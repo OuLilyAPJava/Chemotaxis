@@ -4,7 +4,7 @@ void setup()
 {
   background(0);
   size(500, 500);
-  bob = new Dot[100];
+  bob = new Dot[500];
   for (int i = 0; i < bob.length; i ++)
   {
     bob[i] = new Dot();
@@ -19,17 +19,32 @@ void draw()
   {
     bob[i].move();
     bob[i].show();
-  }
-
-  //move and show the bacteria
+    if (bob[i].myX > 500 - 2 * bob[i].size)
+    {
+      bob[i].myX = bob[i].myX - 1;
+    }
+    if (bob[i].myX < 0 + 2 * bob[i].size)
+    {
+      bob[i].myX = bob[i].myX + 1;
+    }
+    if (bob[i].myY > 500 - 2 * bob[i].size)
+    {
+      bob[i].myY = bob[i].myY - 1;
+    }
+    if (bob[i].myY < 0 + 2 * bob[i].size)
+    {
+      bob[i].myY = bob[i].myY + 1;
+    }
+  }//move and show the bacteria
 }  
 class Dot    
 {     
   int myX, myY, size;
   Dot()
   {
-    myX = 250;
-    myY = 250;
+    myX = (int)(Math.random()*480);
+    myY = (int)(Math.random()*480);
+    size = 20;
   }
   void move()
   {
@@ -74,10 +89,10 @@ class Dot
   }
   void show()
   {
-    //stroke(129, 226, 216);
+    stroke(129, 226, 216);
     //fill((int)(Math.random()*30)+90, (int)(Math.random()*30)+230, (int)(Math.random()*0)+230);
-    fill(91, 255, 238);
-    ellipse(myX, myY, 10, 10);
+    fill(91, 255, 238, 100);
+    ellipse(myX, myY, size, size);
     /*fill(155, 247, 237);
      ellipse(myX + 25, myY + 25, 10, 10);
      fill(77, 198, 185);
@@ -89,7 +104,7 @@ void MouseClicked()
   if (avoid == true)
   {
     avoid = false;
-  }else
+  } else
   {
     avoid = true;
   }
