@@ -1,8 +1,9 @@
 Balloon [] bob; 
-int houseY = 550;
+int houseX = 200;
+int houseY = 600;
 void setup()   
 {
-  background(0);
+  background(128, 229, 255);
   size(500, 500);
   bob = new Balloon[150];
   for (int i = 0; i < bob.length; i ++)
@@ -12,43 +13,41 @@ void setup()
 }   
 void draw()   
 {
-  background(0);
-  houseY -= 1;
+  background(128, 229, 255);
+  houseY -= 1.5;
   for (int i = 0; i < bob.length; i ++)
   {
     bob[i].move();
     bob[i].show();
-    if (bob[i].myY > 500 - 2 * bob[i].size)
+    if (bob[i].myY < -500 + 2 * bob[i].size)
     {
-      bob[i].myY = bob[i].myY - 1;
-    }
-    if (bob[i].myY < 0 + 2 * bob[i].size)
-    {
-      bob[i].myY = bob[i].myY + 1;
+      noLoop();
     }
   }//move and show the bacteria
-}  
+}
 class Balloon    
 {     
   int myX, myY, size;
   Balloon()
   {
     myX = (int)(Math.random()*150) + 175;
-    myY = (int)(Math.random()*100) + 450;
+    myY = (int)(Math.random()*100) + 400;
     size = 20;
   }
   void move()
   {
     myX = myX + (int)(Math.random()*5)-2;
-    myY = myY + (int)(Math.random()*5)-3;//up
+    myY = myY + (int)(Math.random()*5) - 4;//up
   }
   void show()
   {
     stroke(129, 226, 216);
-    //fill((int)(Math.random()*30)+90, (int)(Math.random()*30)+230, (int)(Math.random()*0)+230);
-    fill(91, 255, 238);
+    fill((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random()* 255));
+    line(myX, myY, houseX + 50, houseY - 50);
     ellipse(myX, myY, size, size);
-    line(myX, myY, 250, houseY);
-    rect(200, houseY + 50, 100, 80);
+    fill(198, 140, 83);
+    triangle(houseX - 10, houseY, houseX + 50, houseY - 50, houseX + 110, houseY); 
+    fill(223, 191, 159);
+    rect(houseX, houseY, 100, 80);
   }
 }
