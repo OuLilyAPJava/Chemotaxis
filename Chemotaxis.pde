@@ -1,8 +1,8 @@
 Balloon [] bob; 
-int houseX = 170;
+int houseX = 180;
 int houseY = 600;
-int cloudX = 100;
-int cloudY = 100;
+int cloudX = 70;
+int cloudY = 90;
 void setup()   
 {
   background(128, 229, 255);
@@ -34,12 +34,12 @@ class Balloon
   int myX, myY, size, myR, myG, myB;
   Balloon()
   {
-    myX = (int)(Math.random()* 160) + 170;
+    myX = (int)(Math.random()* 165) + 175;
     myY = (int)(Math.random()* 95) + 400;
-    size = 20;
     myR = (int)(Math.random() * 255);
     myG = (int)(Math.random() * 255);
     myB = (int)(Math.random()* 255);
+    size = 20;
   }
   void move()
   {
@@ -48,11 +48,11 @@ class Balloon
   }
   void show()
   {
-    stroke(0);
-    line(myX, myY + 13, houseX + 75, houseY - 50);
     fill(myR, myG, myB);
     triangle(myX, myY + 10, myX - 2, myY + 13, myX + 2, myY + 13);
     ellipse(myX, myY, size, size + 2);
+    stroke(0);
+    line(myX, myY + 13, houseX + 75, houseY - 50);
   }
 }
 void clouds()
@@ -64,21 +64,27 @@ void clouds()
   ellipse(cloudX + 40, cloudY, 65, 65);
   ellipse(cloudX + 80, cloudY, 45, 45);
   //cloud 2
-  ellipse(100, 200, 45, 45);
-  ellipse(140, 200, 65, 65);
-  ellipse(180, 200, 45, 45);
+  ellipse(cloudX + 100, cloudY + 170, 45, 45);
+  ellipse(cloudX + 140, cloudY + 170, 65, 65);
+  ellipse(cloudX + 180, cloudY + 170, 45, 45);
   //cloud 3
-  ellipse(100, 200, 45, 45);
-  ellipse(140, 200, 65, 65);
-  ellipse(180, 200, 45, 45);
+  ellipse(cloudX + 290, cloudY + 70, 45, 45);
+  ellipse(cloudX + 330, cloudY + 70, 65, 65);
+  ellipse(cloudX + 370, cloudY + 70, 45, 45);
 }
 
 void house()
 {
+  //roof
   fill(198, 140, 83);
   triangle(houseX - 15, houseY, houseX + 75, houseY - 50, houseX + 165, houseY); 
+  //wall
   fill(223, 191, 159);
   rect(houseX, houseY, 150, 100);
+  //door
   fill(198, 140, 83);
-  rect(houseX + 30, houseY + 40, 40, 60);
+  rect(houseX + 23, houseY + 40, 40, 60);
+  //window
+  fill(239, 244, 252);
+  rect(houseX + 87, houseY + 20, 40, 40);
 }
